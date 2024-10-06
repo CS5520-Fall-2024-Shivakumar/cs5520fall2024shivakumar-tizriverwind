@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button_am, button_calc;
+    Button button_am, button_qc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +26,22 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        button_am = findViewById(R.id.aboutMe_button);
+        button_am = findViewById(R.id.button_aboutMe);
         button_am.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,
                         "Xiaolin Liu\n" + "liu.xiaolin@northeastern.edu",
-
                         Toast.LENGTH_LONG).show();
 
             }
         });
+
+        button_qc = findViewById(R.id.button_quickCalc);
+        button_qc.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, QuickCalcActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
