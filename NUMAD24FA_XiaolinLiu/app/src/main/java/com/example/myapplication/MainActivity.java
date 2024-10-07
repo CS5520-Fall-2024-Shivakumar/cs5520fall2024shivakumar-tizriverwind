@@ -2,8 +2,11 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button button_am, button_qc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +34,20 @@ public class MainActivity extends AppCompatActivity {
         button_am.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,
-                        "Xiaolin Liu\n" + "liu.xiaolin@northeastern.edu",
-                        Toast.LENGTH_LONG).show();
+                // Inflate custom toast layout
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.custom_toast_container));
 
+                // Set text for custom toast
+                TextView text = layout.findViewById(R.id.toast_text);
+                text.setText("Xiaolin Liu\nliu.xiaolin@northeastern.edu");
+
+                // Create and show the custom toast
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER, 0, 0); // Center the toast
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
+                toast.show();
             }
         });
 
@@ -42,6 +56,5 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuickCalcActivity.class);
             startActivity(intent);
         });
-
     }
 }

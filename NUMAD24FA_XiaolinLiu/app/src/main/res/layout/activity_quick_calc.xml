@@ -17,7 +17,7 @@
         android:id="@+id/calcDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8989"
+        android:text=""
         android:textAlignment="textEnd"
         android:textColor="@color/primaryTextColor"
         android:textSize="56sp"
