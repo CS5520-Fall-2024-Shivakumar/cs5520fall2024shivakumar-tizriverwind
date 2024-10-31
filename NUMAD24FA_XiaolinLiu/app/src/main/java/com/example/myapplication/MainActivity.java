@@ -34,20 +34,8 @@ public class MainActivity extends AppCompatActivity {
         button_am.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate custom toast layout
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.custom_toast_container));
-
-                // Set text for custom toast
-                TextView text = layout.findViewById(R.id.toast_text);
-                text.setText("Xiaolin Liu\nliu.xiaolin@northeastern.edu");
-
-                // Create and show the custom toast
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER, 0, 0); // Center the toast
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(layout);
-                toast.show();
+               Intent intent = new Intent(MainActivity.this, AboutMeActivity.class);
+               startActivity(intent);
             }
         });
 

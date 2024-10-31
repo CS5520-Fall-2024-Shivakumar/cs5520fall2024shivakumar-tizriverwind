@@ -26,6 +26,9 @@ public class QuickCalcActivity extends AppCompatActivity implements View.OnClick
             return insets;
         });
 
+        Button backButton = findViewById(R.id.buttonBackToMain);
+        backButton.setOnClickListener(v -> finish());
+
         calDisplay = findViewById(R.id.calcDisplay);
         resultDisplay = findViewById(R.id.resultDisplay);
 
