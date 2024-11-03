@@ -19,6 +19,9 @@
             android:name=".AboutMeActivity"
             android:exported="false" />
         <activity
+            android:name=".ContactsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 

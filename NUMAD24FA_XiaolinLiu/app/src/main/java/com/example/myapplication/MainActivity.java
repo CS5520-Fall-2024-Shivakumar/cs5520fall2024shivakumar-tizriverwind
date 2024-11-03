@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button_am, button_qc;
+    Button button_am, button_qc, button_cc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +44,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, QuickCalcActivity.class);
             startActivity(intent);
         });
+
+
     }
 }
