@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button_am, button_qc, button_cc;
+    Button button_am, button_qc, button_contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        button_contact = findViewById(R.id.button_contacts);
+        button_contact.setOnClickListener(v->{
+            Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+            startActivity(intent);
+        });
     }
 }

@@ -19,7 +19,7 @@
             android:name=".AboutMeActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactsActivity"
+            android:name=".ContactActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
