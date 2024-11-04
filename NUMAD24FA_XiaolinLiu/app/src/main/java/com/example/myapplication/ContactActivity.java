@@ -43,10 +43,10 @@ public class ContactActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvContacts);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
-        contactModelList.add(new ContactModel("Godric Griffindor", "001"));
-        contactModelList.add(new ContactModel("Helga Hufflepuff", "002"));
-        contactModelList.add(new ContactModel("Rowena Ravenclaw", "003"));
-        contactModelList.add(new ContactModel("Salazar Slytherin", "004"));
+        contactModelList.add(new ContactModel("Godric Griffindor", "001-001-1234"));
+        contactModelList.add(new ContactModel("Helga Hufflepuff", "002-002-1234"));
+        contactModelList.add(new ContactModel("Rowena Ravenclaw", "003-003-1234"));
+        contactModelList.add(new ContactModel("Salazar Slytherin", "004-004-1234"));
         contactAdapter = new ContactAdapter(contactModelList, this);
         recyclerView.setAdapter(contactAdapter);
     }
