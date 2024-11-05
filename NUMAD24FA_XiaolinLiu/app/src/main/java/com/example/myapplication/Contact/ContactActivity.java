@@ -1,8 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.Contact;
 
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.myapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -14,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputType;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +117,17 @@ public class ContactActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         builder.show();
 
+    }
 
+    public void deleteContact(ContactModel contact, int position) {
+        new AlertDialog.Builder(this).setTitle("Delete")
+                .setMessage("Confirm to delete this contact?")
+                .setPositiveButton("Yes", ((dialog, which) -> {
+                    contactAdapter.removeContact(contact);
+                    Snackbar.make(findViewById(R.id.fabAddContact),
+                    "Contact deleted", Snackbar.LENGTH_SHORT).show();
+                }))
+                .setNegativeButton("No", (dialog, which) -> dialog.cancel()).show();
     }
 
     private void displayItems() {
@@ -131,6 +140,7 @@ public class ContactActivity extends AppCompatActivity {
         contactModelList.add(new ContactModel("Helga Hufflepuff", "002-002-1234"));
         contactModelList.add(new ContactModel("Rowena Ravenclaw", "003-003-1234"));
         contactModelList.add(new ContactModel("Salazar Slytherin", "004-004-1234"));
+        contactModelList.add(new ContactModel("Me", "412-320-9274"));
 
         contactAdapter = new ContactAdapter(contactModelList, this);
         recyclerView.setAdapter(contactAdapter);

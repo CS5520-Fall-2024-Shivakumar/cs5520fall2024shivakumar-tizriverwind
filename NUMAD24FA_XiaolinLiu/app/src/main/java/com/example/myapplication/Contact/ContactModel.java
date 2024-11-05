@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Contact;
 
 public class ContactModel {
     String name = "";

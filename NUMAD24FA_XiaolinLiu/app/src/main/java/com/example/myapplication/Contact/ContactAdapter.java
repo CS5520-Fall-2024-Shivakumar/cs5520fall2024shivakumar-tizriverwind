@@ -1,5 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Contact;
 
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,8 @@ import java.util.List;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.widget.Toast;
+
+import com.example.myapplication.R;
 
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
@@ -40,16 +42,21 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         holder.itemView.setOnClickListener(v->{
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:" + contact.getPhoneNum()));
-            try {
-                activity.startActivity(callIntent); // Start the dialer activity
-            } catch (Exception e) {
-                Toast.makeText(activity, "Unable to open dialer", Toast.LENGTH_SHORT).show(); // Catch potential errors
-            }
+            activity.startActivity(callIntent);
+
         });
 
-        // Long click to edit existing contacts
+        // Long click to edit or delete existing contacts
         holder.itemView.setOnLongClickListener( v-> {
-            activity.showEditContactDialog(contact, position);
+            new AlertDialog.Builder(activity).setTitle("Choose an action")
+                    .setItems(new String[]{"Edit","Delete"},
+                    (dialog, which) ->{
+                if (which == 0) {
+                    activity.showEditContactDialog(contact, position);
+                } else if (which == 1) {
+                    activity.deleteContact(contact, position);
+                }
+            }).show();
             return true;
         });
     }
