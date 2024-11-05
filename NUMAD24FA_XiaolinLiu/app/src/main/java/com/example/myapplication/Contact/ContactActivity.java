@@ -140,7 +140,7 @@ public class ContactActivity extends AppCompatActivity {
         contactModelList.add(new ContactModel("Helga Hufflepuff", "002-002-1234"));
         contactModelList.add(new ContactModel("Rowena Ravenclaw", "003-003-1234"));
         contactModelList.add(new ContactModel("Salazar Slytherin", "004-004-1234"));
-        contactModelList.add(new ContactModel("Me", "412-320-9274"));
+        contactModelList.add(new ContactModel("Emulator", "650-555-1212"));
 
         contactAdapter = new ContactAdapter(contactModelList, this);
         recyclerView.setAdapter(contactAdapter);
