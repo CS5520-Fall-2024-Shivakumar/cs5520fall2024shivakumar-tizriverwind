@@ -38,7 +38,7 @@ public class ContactActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
     }
 
-    private void showAddContactDialog() {
+    public void showAddContactDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add New Contact");
 
@@ -53,7 +53,7 @@ public class ContactActivity extends AppCompatActivity {
 
         final EditText phoneInput = new EditText(this);
         phoneInput.setHint("Phone Number");
-        phoneInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        phoneInput.setInputType(InputType.TYPE_CLASS_PHONE);
         layout.addView(phoneInput);
 
         builder.setView(layout);
@@ -65,7 +65,7 @@ public class ContactActivity extends AppCompatActivity {
             if (!name.isEmpty() && !phone.isEmpty()) {
                 ContactModel newContact = new ContactModel(name, phone);
                 contactAdapter.addContact(newContact);
-                Snackbar.make(findViewById(R.id.fabAddContact), "Contact added!",
+                Snackbar.make(findViewById(R.id.fabAddContact), "Contact added! 🎉",
                                 Snackbar.LENGTH_LONG)
                         .setAction("Undo", v -> contactAdapter.removeContact(newContact))
                         .show();
@@ -75,6 +75,50 @@ public class ContactActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel",((dialog, which) -> dialog.cancel()));
 
         builder.show();
+    }
+
+    public void showEditContactDialog(ContactModel contact, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Edit Contact");
+
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(50,20,50,20);
+
+        final EditText nameInput = new EditText(this);
+        nameInput.setHint("Name");
+        nameInput.setText(contact.getName());
+        nameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        layout.addView(nameInput);
+
+        final EditText phoneInput = new EditText(this);
+        phoneInput.setHint("Phone Number");
+        phoneInput.setText(contact.getPhoneNum());
+        phoneInput.setInputType(InputType.TYPE_CLASS_PHONE);
+        layout.addView(phoneInput);
+
+        builder.setView(layout);
+
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            String newName = nameInput.getText().toString().trim();
+            String newPhone = phoneInput.getText().toString().trim();
+
+            if (!newName.isEmpty() && !newPhone.isEmpty()) {
+                contact.setName(newName);
+                contact.setPhoneNum(newPhone);
+                contactAdapter.notifyItemChanged(position);
+                Snackbar.make(findViewById(R.id.fabAddContact), "Contact updated!",
+                        Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(findViewById(R.id.fabAddContact), "Fields cannot be empty",
+                        Snackbar.LENGTH_SHORT).show();
+            }});
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+
+
     }
 
     private void displayItems() {
